@@ -1,0 +1,15 @@
+<template>     
+   <lightning-card title="The config records assigned are" >    
+     <div class="slds-box">  
+       <lightning-datatable  
+       data={configAssigned} columns={columns} key-field="Id" hide-checkbox-column="true"
+       sorted-by={sortBy}
+       sorted-direction={sortDirection}
+       onsort={handleSortdata}>  
+       </lightning-datatable>  
+     </div>  
+    </br>
+
+     <lightning-button variant=brand label="Send" disabled={disableSend} onclick={handleSave}></lightning-button>  
+   </lightning-card>  
+ </template>

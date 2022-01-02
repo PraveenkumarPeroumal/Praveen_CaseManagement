@@ -1,0 +1,37 @@
+<template>  
+     <!--Parent to Child communicaiton using Non-Primitive data types(Passing array of objects)-->
+     <!-- <template if:true={visibility}> -->
+      <c-case-configs-component caseid={recordId}  onbuttonvaluechange={hanldeButtonValueChange}></c-case-configs-component>
+    <!-- </template> -->
+    
+    <lightning-card title="The available configs are shown below" >    
+      <div class="slds-m-around_medium">  
+      <div class="slds-box">  
+        <lightning-datatable  
+        data={config} columns={columns} key-field="Id"
+        sorted-by={sortBy}
+        sorted-direction={sortDirection}
+        onsort={handleSortdata}>  
+        </lightning-datatable>  
+      </div>  
+    </br>
+    <lightning-button variant=brand label="Add" onclick={handleSave}  disabled={disableAdd}></lightning-button>  
+<!--Code for Pagination, starts-->
+  </br>
+  <lightning-layout horizontal-align="space">
+      <lightning-layout-item flexibility="auto">
+          <lightning-button label="Previous" icon-name="utility:chevronleft" onclick={previousHandler}>
+          </lightning-button>
+      </lightning-layout-item>
+      <lightning-layout-item flexibility="auto">
+          Page {page} of {totalPage}
+      </lightning-layout-item>
+      <lightning-layout-item flexibility="auto">
+          <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right"
+              onclick={nextHandler}></lightning-button>
+      </lightning-layout-item>
+  </lightning-layout> 
+<!--Code for Pagination, End-->
+</div>  
+    </lightning-card>  
+  </template>
