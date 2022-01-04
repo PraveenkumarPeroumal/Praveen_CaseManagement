@@ -51,6 +51,7 @@ export default class CaseConfigsComponent extends LightningElement {
        
     }
 
+     //to retrieve all the case configs assigned to the case
     @api retrieveDetails(){
         refreshApex(retrivecaseConfig({caseId:this.caseid, field : this.sortBy,sortOrder : this.sortDirection})  
         .then(result=>{          
@@ -66,6 +67,7 @@ export default class CaseConfigsComponent extends LightningElement {
     }
 
 
+    //to check the status of the case and to check whether the payload to external service has been sent to not
     retrievestatusDetails(){
       refreshApex(retrivecaseStatus({caseId:this.caseid})  
       .then(result=>{  
@@ -88,6 +90,7 @@ export default class CaseConfigsComponent extends LightningElement {
   }
 
 
+  //On click of sort, the below event will be triggered
   handleSortdata(event) {
     console.log('I am in sorting method');
     // field name
@@ -101,42 +104,8 @@ export default class CaseConfigsComponent extends LightningElement {
    // this.sortData(event.detail.fieldName, event.detail.sortDirection);
 }
 
-//Sort function for columns
-/* sortData(fieldname, direction) {
-  // serialize the configAssigned before calling sort function
-  let parseData = JSON.parse(JSON.stringify(this.configAssigned));
 
-  // Return the value stored in the field
-  let keyValue = (a) => {
-      return a[fieldname];
-  };
-
-  // cheking reverse direction 
-  let isReverse = direction === 'asc' ? 1: -1;
-
-  // sorting data 
-  parseData.sort((x, y) => {
-      x = keyValue(x) ? keyValue(x) : ''; // handling null values
-      y = keyValue(y) ? keyValue(y) : '';
-
-      // sorting values based on direction
-      return isReverse * ((x > y) - (y > x));
-  });
-
-  // set the sorted data to data table data
-  this.configAssigned = parseData;
-
-}  */
-
-
-
-
-
-     
-
-    /*@wire(retrivecaseConfig, {caseId: '$caseIdToApex'})
-    caseConfig;  */
-
+    //on click of save button, this event will be triggered
     handleSave(){
       this.retrievestatusDetails();
 
