@@ -37,7 +37,7 @@ export default class AvailableConfigsComponent extends LightningElement {
 
     //properties for using in PageNaviagation,Start
     @track page = 1; 
-    @track pageSize = 200; 
+    @track pageSize = 100;  //pageSize specifies in a page how many records need to be displayed? in our case i am making 100 records per page. It can be changed based on our requirements
     @track totalRecountCount = 0;
     @track totalPage = 0;
     @track startingRecord = 1;
@@ -45,6 +45,7 @@ export default class AvailableConfigsComponent extends LightningElement {
     //properties for using in PageNaviagation,End
     
 
+    //To get all the available cofig
     @wire(retriveConfig,{field : '$sortBy',sortOrder : '$sortDirection'})
     wiredConfig(result) {
         refreshApex(this.wiredAccountList = result);
@@ -68,7 +69,7 @@ export default class AvailableConfigsComponent extends LightningElement {
     }
     
 
-    
+    //on click of the Add button the below event will be called
     handleSave(event) {
         this.selectedRecords =  
        this.template.querySelector("lightning-datatable").getSelectedRows();  
@@ -92,6 +93,8 @@ export default class AvailableConfigsComponent extends LightningElement {
         refreshApex(this.wiredAccountList);
     }
 
+    //the below event comes from caseConfig component. this is to check if the payload to external service has been already sent or not.If sent then we disabling the Add button 
+    //because if payload is sent we cannot add the configs to that case    
     hanldeButtonValueChange(event){
         this.disableAdd=event.detail;
     }
